@@ -2,18 +2,20 @@ import os
 
 VERSION = "0.1.0"
 
-_template_suffixes = ['.cpp', '.py', '.java']
+# order of language preference
+LANGUAGE_PREF = ['py', 'cpp', 'java']
+
+_template_suffixes = ['.py', '.cpp', '.java']
 _template_path = os.path.join(os.path.dirname(__file__), 'templates')
 TEMPLATES = {}
 if os.path.exists(_template_path):
     for file in os.listdir(_template_path):
         for suffix in _template_suffixes:
             if file == 'template' + suffix:
-                TEMPLATES[suffix[1:]] = open(os.path.join(_template_path, file), 'r').read()
-                break    
+                TEMPLATES[suffix[1:]] = open(
+                    os.path.join(_template_path, file), 'r').read()
+                break
 
-# order of language preference
-LANGUAGE_PREF = ['py', 'cpp', 'java']
 
 # compile commands
 COMPILE_CMDS = {
@@ -22,7 +24,5 @@ COMPILE_CMDS = {
 }
 
 # adjust this as needed
-TIMEOUT = 10 # seconds
-JAVA_MEMLIM = 1024 # MB
-
-
+TIMEOUT = 10  # seconds
+JAVA_MEMLIM = 1024  # MB
