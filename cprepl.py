@@ -65,7 +65,8 @@ class CPRepl:
 - "ls": list all files
 - "rm": remove a file (must be full file name)
 - "q" or "quit": quit the program
-- "help": show these instructions"""
+- "help": show these instructions
+- "!": run shell command"""
         print(termcolor.colored(msg, 'cyan'))
 
     def _print_header(self):
@@ -183,6 +184,9 @@ There are also a few built-in commands:"""
                 continue
             elif cmd == 'help':
                 self._print_help()
+                continue
+            elif cmd.startswith('!'):
+                subprocess.run(cmd[1:], cwd=self.path, shell=True)
                 continue
 
             if cmd == '':
