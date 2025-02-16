@@ -64,7 +64,6 @@ a: py
 ```
 
 ## To-Do
-- [ ] Fix Java file creation and compilation commands
 - [ ] Add timer / clock 
 - [ ] Add ability to change config in REPL
 - [ ] Add tab completion to built-in commands

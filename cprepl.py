@@ -18,7 +18,9 @@ def _run_py(file):
 
 
 def _run_cpp(file):
+    file = os.path.basename(file)
     name = file.split('.', 1)[0]
+    print(termcolor.colored(f"Compiling {name}.cpp", 'blue'))
     compile_cmd = COMPILE_CMDS['cpp'].format(name=name)
     compile_out = subprocess.run(shlex.split(
         compile_cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -27,12 +29,14 @@ def _run_cpp(file):
         print(termcolor.colored(
             f"Compilation failed with exit code {compile_out.returncode}", 'red'))
         return None
-
+    print(termcolor.colored(f"Finished compiling {name}.cpp, running", 'green'))
     return subprocess.Popen(['./' + name], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 
 def _run_java(file):
+    file = os.path.basename(file)
     name = file.split('.', 1)[0]
+    print(termcolor.colored(f"Compiling {name}.java", 'blue'))
     compile_cmd = COMPILE_CMDS['java'].format(name=name)
     compile_out = subprocess.run(shlex.split(
         compile_cmd), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -42,6 +46,7 @@ def _run_java(file):
             f"Compilation failed with exit code {compile_out.returncode}", 'red'))
         return None
 
+    print(termcolor.colored(f"Finished compiling {name}.java, running", 'green'))
     run_cmd = f'java -Dfile.encoding=UTF-8 -XX:+UseSerialGC -Xss64m -Xms{JAVA_MEMLIM}m -Xmx{JAVA_MEMLIM}m {name}'
     return subprocess.Popen(shlex.split(run_cmd), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
