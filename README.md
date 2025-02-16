@@ -5,6 +5,23 @@ CPRepl (Competitive Programming REPL) is a small command line tool that helps au
 **NOTE: This project is in early stages of development and only supports Python, C++, and Java.**
 Please open an issue or contribute a PR if you would like to see support for other languages.
 
+## Installation
+You can clone this repository using:
+```bash
+git clone https://github.com/flocto/CPRepl.git
+```
+
+Then, simply run the main file:
+```bash
+python3 main.py </path/to/contest/directory>
+```
+
+### Linux
+You can also add an alias to your `.bashrc` file to run CPRepl from anywhere:
+```bash
+alias cprepl="python3 /path/to/CPRepl/main.py ."
+```
+
 ## Running
 The only requirement for CPRepl is `termcolor`. You can install it using pip:
 ```bash
